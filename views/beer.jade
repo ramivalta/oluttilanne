@@ -1,0 +1,76 @@
+div(data-bind="visible: $index() >= $root.rangeBottom() && $index() < $root.rangeTop() ")
+	div(style="width: 100%; background: teal; height: 4px; border-right: 1px solid teal; border-left: 1px solid teal" data-bind="visible: $data.availability().length > 0 && $data.IsNew() == true")
+
+	div.beerlist(data-bind="css: { new : $data.IsNew() == true }, visible: $data.availability().length > 0")
+		div.row
+			div.large-12.medium-12.small-12.columns(style="padding-top: 8px; padding-bottom: 8px; background: #eee")
+				//span(data-bind="text: ko.mapping.toJSON($data)")
+				h5
+					div
+						span(style="font-weight: 700" data-bind="text: $data.Name")
+						span.right(data-bind="foreach: $data.ba")
+							//span (
+							span(data-bind="text: $data.brewery_name")
+							//span )
+
+			div.large-3.medium-3.small-12.columns(style="padding-top: 8px; padding-bottom: 8px; border-top: 1px #ccc solid")
+				h5.subheader(style="font-size: 0.975rem")
+					div(data-bind="visible: $data.StartOfSale() !== null")
+						span Myynti alkaa:&nbsp;
+						span(data-bind="text: $data.StartOfSale")
+					div
+						span Pullokoko:&nbsp;
+						span(data-bind="text: $data.Volume")
+						span l
+						
+					div
+						span Hinta:&nbsp;
+						span(data-bind="text: $data.Price")
+						span &euro;
+					div
+						span Maa:&nbsp;
+						span(data-bind="text: $data.Region")
+			div.large-3.medium-3.small-12.columns(style="padding-top: 8px; padding-bottom: 8px; border-top: 1px #ccc solid")
+				//(style="padding-bottom: 16px; padding-top: 8px")
+				h5.subheader(style="font-size: 0.975rem")
+					div(data-bind="foreach: $data.ba")
+						div
+							span Pisteet:&nbsp;
+							span(data-bind="text: $data.ba_score")
+						div
+							span ABV:&nbsp;
+							span(data-bind="text: $data.beer_abv")
+						//div
+							span Tyyli:&nbsp;
+							span(data-bind="text: $data.beer_style")
+
+
+
+
+			div.large-6.medium-6.small-12.columns(style="border-left: 1px #eee solid; background: #fafafa; padding-top: 8px; padding-bottom: 8px; min-height: 100px; border-top: 1px #ccc solid")
+
+				//div(data-bind="visible: $data.availability().length == 0")
+					h5.subheader Ei tietoja
+				div(data-bind="visible: $data.availability().length > 0")
+					div(style="color: #555; line-height: 1.3em" data-bind="foreach: $data.availability")
+						div(data-bind="if: parseInt($data.Amount(), 10) >= 0")
+							span(data-bind="visible: parseInt($data.Amount(), 10) <  10 ")
+								span(style="opacity: 0") 0
+							span(data-bind="text: $data.Amount")
+							span &nbsp;pulloa
+							span &nbsp;-						
+							span(data-bind="text: $data.StoreName" style="text-transform: capitalize")
+
+					span(style="line-height: 1.3em")
+						strong(data-bind="text: $data.totalAvailable")
+						span &nbsp;yhteensä
+
+
+		//div.row
+			div.large-12.medium-12.small-12.columns
+				a(data-bind="click: $root.drawChart.bind($data)" style="font-size: 95%")
+					span Näytä lisää...
+
+				div.chart(data-bind="attr: { id: '_chart_' + $data.ProductId() }")
+
+	//div(style="width: 100%; background: teal; height: 4px; border-right: 1px solid teal; border-left: 1px solid teal" data-bind="visible: $data.availability().length > 0 && $data.IsNew() == true")

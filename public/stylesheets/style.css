@@ -1,0 +1,48 @@
+body {
+	cursor: auto;
+}
+
+p {
+	line-height: 1.3em;
+}
+
+h5 {
+	line-height: 1.3em !important;
+	margin-bottom: 0.2rem;
+	margin-top: 0.2rem;	
+}
+
+.subheader {
+	line-height: 1.3em !important;
+	margin-bottom: 0.2rem;
+	margin-top: 0.2rem;	
+
+}
+
+.beerlist {
+	border-top: 1px #e0e0e0 solid;
+	//padding-bottom: 16px;
+	//padding-top: 8px;
+	border-left: 1px #e0e0e0 solid;
+	border-right: 1px #e0e0e0 solid;
+}
+
+.new {
+	background: #f7f7f7;
+	//border-top: 6px solid teal;
+	//border-left: 4px solid teal;
+	//border-right: 4px solid teal;	
+
+}
+
+.beerlist:last-child {
+	//border-bottom: 1px #ccc solid;
+}
+
+.sub-nav {
+	margin-left: -1rem;
+}
+
+.row {
+	max-width: 1920px;
+}

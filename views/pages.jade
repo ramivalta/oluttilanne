@@ -1,0 +1,4 @@
+div(data-bind="visible: $root.pages().length > 1")
+	ul.pagination(data-bind="foreach: $root.pages")
+		li(data-bind="css: { current : $index() == $root.activePaginationPage() }")
+			a(data-bind="text: $index() + 1, click: $root.changePage.bind($data, $index())")

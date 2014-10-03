@@ -1,0 +1,55 @@
+extends layout
+
+block content
+	div.large-12.medium-12.small-12.columns
+		h1 Oluttilanne
+
+
+		div
+			select(data-bind="options: beerlists, optionsText: function(i) { return moment(i.createdAt()).format('hh:mm D.M.YYYY') }, value: $root.selectedList" style="display: inline-block; width: 20%; height: 38px")
+
+			span &nbsp;
+
+			input(type="text" placeholder="Hae oluita tai panimoita..." style="display: inline-block; width: 40%; height: 38px" data-bind="value: $root.search, valueUpdate: 'input' ")
+
+
+			div(style="display: inline-block; width: 39%")
+				| &nbsp;&nbsp;
+				input#blacklist(type="checkbox" data-bind="checked: $root.showBlackListed")
+				label(for="blacklist" style="display: inline-block") Näytä myös huonot oluet
+
+
+		div(data-bind="visible: rendered() == false")
+			h1.subheader Ladataan....
+
+
+		div(data-bind="visible: rendered() == true")
+
+			//div
+				input#showNew(type="checkbox" data-bind="checkedValue: true, checked: $root.showNewOnly, valueUpdate: 'change'")
+				label(for="showNew" style="width: 33%") Näytä vain uutuudet&nbsp;
+
+			dl.sub-nav
+				dd(data-bind="click: $root.activePage.bind($data, 'main'), css: { active: $root.activePage() == 'main' }")
+					a Kaikki
+				dd(data-bind="click: function() { $root.activePage('new'); $root.changePage(0) }, css: { active: $root.activePage() == 'new' }")
+					a Vain uutuudet
+
+
+			div(data-bind="visible: $root.rendered() == true && $root.activePage() == 'main' ")
+				include pages.jade
+
+				div(data-bind="foreach: { data : $root.filteredBeers, afterRender: $root.doneRendering, beforeRender: $root.rendered(false) }")
+					include beer.jade
+
+				p &nbsp;
+
+				include pages.jade
+
+			div(data-bind="visible: $root.rendered() == true && $root.activePage() == 'new' ")
+				include pages.jade
+
+				div(data-bind="foreach: { data : $root.newBeers, afterRender: $root.doneRendering, beforeRender: $root.rendered(false) }")
+					include beer.jade
+
+				include pages.jade

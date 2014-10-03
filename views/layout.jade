@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/foundation.min.css')    	
+    link(rel='stylesheet', href='/stylesheets/style.css')    
+
+    script(src='http://code.jquery.com/jquery-2.0.3.min.js')
+    script(src='http://knockoutjs.com/downloads/knockout-3.2.0.js')
+    script(src="/javascripts/knockout.mapping-latest.js")
+    script(src="/javascripts/moment-with-langs.min.js")
+    script(src="/javascripts/lodash.js")     
+    //script(type="text/javascript" src="https://www.google.com/jsapi")
+    //<script>google.load('visualization', '1.0', {'packages':['corechart']});</script>
+    script(src="/javascripts/alko.js")
+
+  body
+    block content
